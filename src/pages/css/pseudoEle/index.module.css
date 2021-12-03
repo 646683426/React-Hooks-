@@ -1,0 +1,62 @@
+/* 三角形 */
+.triangle {
+  padding-left: 20px;
+  line-height: 20px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.triangle::before {
+  content: '';
+  margin-right: 20px;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  border-left: 10px solid red;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* 时间轴 */
+.time-line {
+  position: relative;
+}
+
+.time-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  border-left: 1px dashed red;
+  transform-origin:0 0;
+  animation: timeline 3s 0s ease both 1;
+}
+
+.time-stamp {
+  position: relative;
+  padding-left: 20px;
+}
+
+.time-stamp::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 1px solid fff;
+  background: red;
+}
+
+@keyframes timeline {
+  0% {
+    transform:scaleY(0);
+    
+  }
+  100% {
+    transform:scaleY(1);
+  }
+}
