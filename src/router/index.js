@@ -125,3 +125,21 @@ export default function Router() {
 // React.lazy 接受一个函数，这个函数需要动态调用 import()。
 // 它必须返回一个 Promise，该 Promise 需要 resolve 一个默认导出的 React 组件。
 // 将需要懒加载的路由组件放在Suspense中，在相应的组件懒加载完成前，会一直展示fallback中的内容
+
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function (n) {
+  if (n <= 1) {
+    return n;
+  }
+  let arr = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    arr.push((arr[i - 2] + arr[i - 1]) % 1000000007);
+  }
+  return arr[n];
+};
+
+console.log(fib(7));
