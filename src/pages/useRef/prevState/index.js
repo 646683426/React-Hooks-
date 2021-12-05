@@ -7,22 +7,23 @@ import { useRef, useState, useEffect } from "react";
 import { Button } from "antd";
 
 export default function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState({ a: 0 });
   const prevCount = usePrevious(count);
   return (
     <div>
       <h2>
-        现在点击次数: {count}, 上一次点击次数: {prevCount}
+        现在点击次数: {count.a}, 上一次点击次数: {prevCount.a}
       </h2>
       <div>
-        <Button onClick={() => setCount(count + 1)}>点击次数+1</Button>
+        <Button onClick={() => setCount(count => { return { a: count.a + 1 } })}>点击次数+1</Button>
       </div>
-    </div>
+    </div >
   );
 }
 
 function usePrevious(value) {
-  const ref = useRef();
+  // useRef 会在每次渲染时返回同一个 ref 对象。
+  const ref = useRef(value);
   /**
    * useEffect在render之后才执行，所以先return上一次的值，再赋新的值
    */
