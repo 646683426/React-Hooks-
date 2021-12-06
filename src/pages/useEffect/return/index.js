@@ -51,6 +51,10 @@ export default function useFirst() {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(count, 'count');
+  }, [count]);
+
   return (
     <div style={{ marginTop: '0.5em' }}>
       <h2>useEffect 组件卸载后清理ref.current上的事件监听</h2>

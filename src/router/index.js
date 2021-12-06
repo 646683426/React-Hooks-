@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, useRoutes, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Layout from '../layout';
 import { config } from './config';
@@ -70,7 +70,7 @@ export default function Router() {
             {/* 嵌套路由子路由的两种写法
                 1:path前不加/,
                 2:path前加/,但要将父路由路径写全 */}
-            {/* <Route path='/admin' element={
+            <Route path='/admin' element={
                   <div>
                     后台首页
                     <Outlet/>
@@ -85,14 +85,14 @@ export default function Router() {
                     <div>
                       bbbbbb
                     </div>
-                } /> */}
+                } />
             {/* <Route path='/b' element={
                   <div>
                     bbbbbb
                   </div>
                 } /> */}
             {/* 上面的写法会报错 */}
-            {/* </Route> */}
+            </Route>
             <Route path='*' element={<NotFound />}></Route>
           </Route>
         </Routes>
@@ -101,9 +101,8 @@ export default function Router() {
   )
 }
 
-// 路由
-// 我们的服务平台用的是5.x版本的路由，我这里分享一下6.x版本的一些改动
-// 路由是根据Route组件的path属性进行匹配 匹配到的就渲染element中的组件
+// 路由6.x版本的一些改动
+// 路由是根据Route组件的path属性与url路径进行匹配 匹配到的就渲染element中的组件
 // 路由匹配规则是从上到下执行,6.x的Routes相当于5.x的Switch,
 // 加了Routes后一旦发现匹配,就不再匹配其余的规则了
 
@@ -128,18 +127,23 @@ export default function Router() {
 
 
 /**
- * @param {number} n
+ * @param {number[]} nums
  * @return {number}
  */
-var fib = function (n) {
-  if (n <= 1) {
-    return n;
+var maxSubArray = function (nums) {
+  let cur, max = nums[0];
+  for (let i = 0, len = nums.length; i < len; i++) {
+    if (cur === undefined) {
+      cur = nums[i];
+    } else {
+      cur += nums[i];
+      max = Math.max(cur, max);
+    }
+    if (cur < 0) {
+      cur = undefined;
+    }
   }
-  let arr = [0, 1];
-  for (let i = 2; i <= n; i++) {
-    arr.push((arr[i - 2] + arr[i - 1]) % 1000000007);
-  }
-  return arr[n];
+  return max;
 };
 
-console.log(fib(7));
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
