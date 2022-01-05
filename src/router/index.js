@@ -71,27 +71,27 @@ export default function Router() {
                 1:path前不加/,
                 2:path前加/,但要将父路由路径写全 */}
             <Route path='/admin' element={
-                  <div>
-                    后台首页
-                    <Outlet/>
-                  </div>
-                }>
-                  <Route path='a' element={
-                    <div>
-                      aaaa
-                    </div>
-                  } />
-                  <Route path='/admin/b' element={
-                    <div>
-                      bbbbbb
-                    </div>
-                } />
-            {/* <Route path='/b' element={
+              <div>
+                后台首页
+                <Outlet />
+              </div>
+            }>
+              <Route path='a' element={
+                <div>
+                  aaaa
+                </div>
+              } />
+              <Route path='/admin/b' element={
+                <div>
+                  bbbbbb
+                </div>
+              } />
+              {/* <Route path='/b' element={
                   <div>
                     bbbbbb
                   </div>
                 } /> */}
-            {/* 上面的写法会报错 */}
+              {/* 上面的写法会报错 */}
             </Route>
             <Route path='*' element={<NotFound />}></Route>
           </Route>
@@ -125,25 +125,12 @@ export default function Router() {
 // 它必须返回一个 Promise，该 Promise 需要 resolve 一个默认导出的 React 组件。
 // 将需要懒加载的路由组件放在Suspense中，在相应的组件懒加载完成前，会一直展示fallback中的内容
 
-
 /**
- * @param {number[]} nums
+ * @param {number} n
  * @return {number}
  */
-var maxSubArray = function (nums) {
-  let cur, max = nums[0];
-  for (let i = 0, len = nums.length; i < len; i++) {
-    if (cur === undefined) {
-      cur = nums[i];
-    } else {
-      cur += nums[i];
-      max = Math.max(cur, max);
-    }
-    if (cur < 0) {
-      cur = undefined;
-    }
-  }
-  return max;
+var getMaximumGenerated = function (n) {
+
 };
 
-console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+console.log(getMaximumGenerated(7));

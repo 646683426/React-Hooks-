@@ -17,7 +17,7 @@ export default function Counter() {
       <div>
         <Button onClick={() => setCount(count => { return { a: count.a + 1 } })}>点击次数+1</Button>
       </div>
-    </div >
+    </div>
   );
 }
 

@@ -37,6 +37,7 @@ function useOnScreen(ref, rootMargin = "0px") {
 export default function useFirst() {
   const [count, setCount] = useState(0);
   const ref = useRef();
+  const countRef = useRef(0);
   // 调用传入ref和root边距的钩子，大于300px时元素可见
   const onScreen = useOnScreen(ref, "-300px");
 
@@ -46,13 +47,14 @@ export default function useFirst() {
       setCount(count => count + 1);
     }, 1000);
     return () => {
-      console.log('清除定时器oooo');
+      console.log('清除定时器oooo', 'count:', count, 'ref:', countRef.current);
       clearInterval(timer);
     }
   }, []);
 
   useEffect(() => {
     console.log(count, 'count');
+    countRef.current = count;
   }, [count]);
 
   return (
